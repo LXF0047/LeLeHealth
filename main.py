@@ -82,6 +82,7 @@ def food_combination():
     banana = {'fat': 0.2, 'protein': 1.4, 'carbohydrate': 22, 'heat': 93}  #
     sunflower_seed_oil = {'fat': 100, 'protein': 0, 'carbohydrate': 0, 'heat': 899}  # 葵花籽油
     salmon = {'fat': 21.6, 'protein': 17.8, 'carbohydrate': 0, 'heat': 263}  # 三文鱼块
+    danish_pastry = {'fat': 25.2, 'protein': 7.1, 'carbohydrate': 45.7, 'heat': 430}  # 丹麦酥
 
     beef_1_heat = calculate_food_heat(beef_1, 150)
     oatmeal_heat = calculate_food_heat(oatmeal, 70)
@@ -90,11 +91,12 @@ def food_combination():
     oat_milk_heat = calculate_food_heat(oat_milk, 270)
     egg_milk_heat = calculate_food_heat(egg, 150)
     mix_nut_2_heat = calculate_food_heat(mix_nut_2, 26)
-    banana_heat = calculate_food_heat(banana, 350)
+    banana_heat = calculate_food_heat(banana, 70)
     salmon_heat = calculate_food_heat(salmon, 100)
     # sunflower_seed_oil_heat = calculate_food_heat(sunflower_seed_oil, 20)
+    danish_pastry_heat = calculate_food_heat(danish_pastry, 70)
 
-    sum_heat = sum_food_heat([beef_1_heat, oatmeal_heat, shrimp_heat, rice_heat, oat_milk_heat, egg_milk_heat, banana_heat, mix_nut_2_heat])
+    sum_heat = sum_food_heat([beef_1_heat, oatmeal_heat, shrimp_heat, rice_heat, oat_milk_heat, egg_milk_heat, banana_heat, mix_nut_2_heat, danish_pastry_heat])
     plan_heat = {'fat': 74, 'protein': 118, 'carbohydrate': 379, 'heat': 2653}
     gap_from_plan(sum_heat, plan_heat)
 
