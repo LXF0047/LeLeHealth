@@ -6,14 +6,16 @@
 # @desc :
 import pandas as pd
 from config.path import DB_PATH
+from utils import dicts2df
 
 
-def wirte2csv(info_dic):
+def insert_csv(info_df):
     """
     将改动写入csv中
-    :param info_dic:
+    :param info_df:
     :return:
     """
+    df = pd.read_csv(DB_PATH)
 
 
 def search(k, v):
