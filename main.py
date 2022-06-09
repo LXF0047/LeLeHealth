@@ -123,16 +123,6 @@ def gap_from_plan(current, plan):
     print(f'[差值]: {gap}')
 
 
-def grid_search(food_lst, plan_intake):
-    """
-    网格搜索所有组合
-    :param food_lst:
-    :param plan_intake:
-    :return:
-    """
-
-
-
 def select_food():
     beef_1 = {'fat': 22.3, 'protein': 16.9, 'carbohydrate': 4.1, 'kcal': kj2kcal(1182), 'food_name': '山姆牛肉饼', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 山姆牛肉饼
     beef_2 = {'fat': 1.8, 'protein': 19.2, 'carbohydrate': 2.9, 'kcal': 105, 'food_name': '牛腿肉', 'food_id': '', 'dietary_fiber': 0, 'sodium': 79.9, 'price': '', 'desc': '', 'g_step': 20}  # 牛腿肉

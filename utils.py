@@ -4,6 +4,7 @@
 # @Version：V 0.1
 # @File : utils.py
 # @desc :
+import numpy as np
 import pandas as pd
 
 
@@ -39,3 +40,39 @@ def dicts2df(dict_lst):
     merged_df = pd.DataFrame(merged_dict)
 
     return merged_df
+
+
+def weighted_mse(current, plan, weight=None):
+    """
+    带权值的mse
+    :param current:  当前摄入量
+    :param plan:  计划摄入量
+    :param weight: 三种营养素的惩罚权值
+    :return:
+    """
+    if not weight:
+        weight = [1 for x in range(len(current))]
+    mse_test = np.sum(((current - plan) * weight) ** 2) / len(plan)
+
+    return mse_test
+
+
+def grid_search(food_lst, plan_intake):
+    """
+    网格搜索所有组合
+    :param food_lst:
+    :param plan_intake:
+    :return:
+    """
+
+
+def calculate_best_plan():
+    return
+
+
+if __name__ == '__main__':
+    a = np.array([9, 8, 7])
+    b = np.array([6, 9, 3])
+    c = np.array([2, 1, 1])
+    print(a-b)
+    print((a-b)*c)
