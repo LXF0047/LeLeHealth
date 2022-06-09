@@ -6,7 +6,7 @@
 # @desc :
 import pandas as pd
 
-from utils import kj2kcal, dicts2df
+from utils import kj2kcal, dicts2df, grid_search
 
 
 def calculate_bmr(weight, height, age, sex='male'):
@@ -147,10 +147,13 @@ def select_food():
     # day2 = [(salmon, 200), (shrimp, 144), (danish_pastry, 160), (oat_milk, 150), (rice, 200), (sweet_potato, 150),
     #         (egg, 100), (oatmeal, 60), (banana, 140), (brown_rice, 40)]
 
-    day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
-            (egg, 80), (oatmeal, 60), (banana, 140), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
+    # day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
+    #         (egg, 80), (oatmeal, 60), (banana, 140), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
 
-    food_combination(day3, lxf)
+    day4 = []
+    grid_search(day4, calculate_nutrient_intake(lxf, 0))
+    # food_combination(day3, lxf)
+
 
 
 
