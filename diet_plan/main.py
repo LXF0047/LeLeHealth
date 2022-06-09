@@ -146,15 +146,16 @@ def select_food():
     # day2 = [(salmon, 200), (shrimp, 144), (danish_pastry, 160), (oat_milk, 150), (rice, 200), (sweet_potato, 150),
     #         (egg, 100), (oatmeal, 60), (banana, 140), (brown_rice, 40)]
 
-    day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
-            (egg, 80), (oatmeal, 60), (banana, 0), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
+    # day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
+    #         (egg, 80), (oatmeal, 60), (banana, 0), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
+
+    day4 = [(beef_2, 180), (oat_milk, 250), (rice, 80), (oatmeal, 60), (banana, 70), (brown_rice, 40), (mantou, 90), (mix_nut_2, 26)]
 
     # day3 = [beef_2, shrimp, salmon, danish_pastry, oat_milk, rice, sweet_potato,
     #         egg, oatmeal, banana, brown_rice, mantou, mix_nut_2]
 
-    day4 = []
     # grid_search(day3, calculate_nutrient_intake(lxf, 0))
-    food_combination(day3, lxf)
+    food_combination(day4, lxf)
 
 
 
