@@ -4,9 +4,8 @@
 # @Version：V 0.1
 # @File : main.py
 # @desc :
-import pandas as pd
 
-from utils import kj2kcal, dicts2df, grid_search
+from tools.utils import kj2kcal, grid_search
 
 
 def calculate_bmr(weight, height, age, sex='male'):
@@ -66,7 +65,7 @@ def calculate_nutrient_intake(base_info, deficit):
     fat_weight = fat_heat / 9
     carbohydrate_weight = carbohydrate_heat / 4
 
-    plan_detail = {'fat': round(fat_weight), 'protein': round(protein_weight, 2), 'carbohydrate': round(carbohydrate_weight, 2), 'heat': round(tdee, 2)}
+    plan_detail = {'fat': round(fat_weight), 'protein': round(protein_weight, 2), 'carbohydrate': round(carbohydrate_weight, 2), 'kcal': round(tdee, 2)}
     print(f'[计划]: {plan_detail}')
     return plan_detail
 
@@ -93,19 +92,19 @@ def calculate_food_heat(name_amount):
     carbohydrate = food_dic['carbohydrate'] * amount_normalized
     heat = food_dic['kcal'] * amount_normalized
 
-    return {'fat': round(fat, 2), 'protein': round(protein, 2), 'carbohydrate': round(carbohydrate, 2), 'heat': round(heat, 2)}
+    return {'fat': round(fat, 2), 'protein': round(protein, 2), 'carbohydrate': round(carbohydrate, 2), 'kcal': round(heat, 2)}
 
 
 def sum_food_heat(food_heat_lst):
     """
     多种实物各营养素求和
     """
-    sum_heat = {'fat': 0, 'protein': 0, 'carbohydrate': 0, 'heat': 0}
+    sum_heat = {'fat': 0, 'protein': 0, 'carbohydrate': 0, 'kcal': 0}
     for food in food_heat_lst:
         sum_heat['fat'] += food['fat']
         sum_heat['protein'] += food['protein']
         sum_heat['carbohydrate'] += food['carbohydrate']
-        sum_heat['heat'] += food['heat']
+        sum_heat['kcal'] += food['kcal']
     for k, v in sum_heat.items():
         sum_heat[k] = round(v, 2)
     print(f'[当前]: {sum_heat}')
@@ -116,7 +115,7 @@ def gap_from_plan(current, plan):
     """
     当前热量与计划热量的差距
     """
-    gap = {'fat': 0, 'protein': 0, 'carbohydrate': 0, 'heat': 0}
+    gap = {'fat': 0, 'protein': 0, 'carbohydrate': 0, 'kcal': 0}
     for k, v in current.items():
         gap[k] = round(v - plan[k], 2)
 
@@ -124,22 +123,22 @@ def gap_from_plan(current, plan):
 
 
 def select_food():
-    beef_1 = {'fat': 22.3, 'protein': 16.9, 'carbohydrate': 4.1, 'kcal': kj2kcal(1182), 'food_name': '山姆牛肉饼', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 山姆牛肉饼
-    beef_2 = {'fat': 1.8, 'protein': 19.2, 'carbohydrate': 2.9, 'kcal': 105, 'food_name': '牛腿肉', 'food_id': '', 'dietary_fiber': 0, 'sodium': 79.9, 'price': '', 'desc': '', 'g_step': 20}  # 牛腿肉
-    shrimp = {'fat': 0.8, 'protein': 18.6, 'carbohydrate': 2.8, 'kcal': 45, 'food_name': '去皮对虾', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 虾仁
-    oatmeal = {'fat': 15.8, 'protein': 7.4, 'carbohydrate': 63.2, 'kcal': kj2kcal(1857), 'food_name': '水果麦片', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 水果麦片
-    rice = {'fat': 0.9, 'protein': 7.9, 'carbohydrate': 77.2, 'kcal': 346, 'food_name': '生米', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 生米
-    oat_milk = {'fat': 0.8, 'protein': 1, 'carbohydrate': 8.1, 'kcal': 45, 'food_name': '燕麦牛奶', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 燕麦牛奶
-    egg = {'fat': 9, 'protein': 12.7, 'carbohydrate': 1.5, 'kcal': 138, 'food_name': '鸡蛋', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 鸡蛋
-    mix_nut_1 = {'fat': 50.7, 'protein': 19, 'carbohydrate': 14.3, 'kcal': kj2kcal(2442), 'food_name': '山姆混合坚果', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 山姆混合坚果
-    mix_nut_2 = {'fat': 10.4/26*100, 'protein': 3.5/26*100, 'carbohydrate': 8.2/26*100, 'kcal': kj2kcal(597/26*100), 'food_name': '每日坚果', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 每日坚果
-    banana = {'fat': 0.2, 'protein': 1.4, 'carbohydrate': 22, 'kcal': 93, 'food_name': '香蕉', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  #
-    sunflower_seed_oil = {'fat': 100, 'protein': 0, 'carbohydrate': 0, 'kcal': 899, 'food_name': '葵花籽油', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 葵花籽油
-    salmon = {'fat': 21.6, 'protein': 17.8, 'carbohydrate': 0, 'kcal': 263, 'food_name': '三文鱼块', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 三文鱼块
-    danish_pastry = {'fat': 25.2, 'protein': 7.1, 'carbohydrate': 45.7, 'kcal': 430, 'food_name': '丹麦酥', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 丹麦酥
-    sweet_potato = {'fat': 0.1, 'protein': 1.6, 'carbohydrate': 20.1, 'kcal': 86, 'food_name': '红薯', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 红薯
-    brown_rice = {'fat': 2.4, 'protein': 9, 'carbohydrate': 73.5, 'kcal': kj2kcal(1523), 'food_name': '糙米', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': ''}  # 糙米
-    mantou = {'fat': 2.8, 'protein': 8.7, 'carbohydrate': 50, 'kcal': kj2kcal(1101), 'food_name': '牛乳小馒头', 'food_id': '', 'dietary_fiber': '', 'sodium': 34, 'price': '', 'desc': '', 'g_step': 30}  # 糙米
+    beef_1 = {'fat': 22.3, 'protein': 16.9, 'carbohydrate': 4.1, 'kcal': kj2kcal(1182), 'food_name': '山姆牛肉饼', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 75}  # 山姆牛肉饼
+    beef_2 = {'fat': 1.8, 'protein': 19.2, 'carbohydrate': 2.9, 'kcal': 105, 'food_name': '牛腿肉', 'food_id': '', 'dietary_fiber': 0, 'sodium': 79.9, 'price': '', 'desc': '', 'g_step': 50}  # 牛腿肉
+    shrimp = {'fat': 0.8, 'protein': 18.6, 'carbohydrate': 2.8, 'kcal': 45, 'food_name': '去皮对虾', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 15}  # 虾仁
+    oatmeal = {'fat': 15.8, 'protein': 7.4, 'carbohydrate': 63.2, 'kcal': kj2kcal(1857), 'food_name': '水果麦片', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 水果麦片
+    rice = {'fat': 0.9, 'protein': 7.9, 'carbohydrate': 77.2, 'kcal': 346, 'food_name': '生米', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 生米
+    oat_milk = {'fat': 0.8, 'protein': 1, 'carbohydrate': 8.1, 'kcal': 45, 'food_name': '燕麦牛奶', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 燕麦牛奶
+    egg = {'fat': 9, 'protein': 12.7, 'carbohydrate': 1.5, 'kcal': 138, 'food_name': '鸡蛋', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 40}  # 鸡蛋
+    mix_nut_1 = {'fat': 50.7, 'protein': 19, 'carbohydrate': 14.3, 'kcal': kj2kcal(2442), 'food_name': '山姆混合坚果', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 山姆混合坚果
+    mix_nut_2 = {'fat': 10.4/26*100, 'protein': 3.5/26*100, 'carbohydrate': 8.2/26*100, 'kcal': kj2kcal(597/26*100), 'food_name': '每日坚果', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 26}  # 每日坚果
+    banana = {'fat': 0.2, 'protein': 1.4, 'carbohydrate': 22, 'kcal': 93, 'food_name': '香蕉', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 70}  #
+    sunflower_seed_oil = {'fat': 100, 'protein': 0, 'carbohydrate': 0, 'kcal': 899, 'food_name': '葵花籽油', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 5}  # 葵花籽油
+    salmon = {'fat': 21.6, 'protein': 17.8, 'carbohydrate': 0, 'kcal': 263, 'food_name': '三文鱼块', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 100}  # 三文鱼块
+    danish_pastry = {'fat': 25.2, 'protein': 7.1, 'carbohydrate': 45.7, 'kcal': 430, 'food_name': '丹麦酥', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 80}  # 丹麦酥
+    sweet_potato = {'fat': 0.1, 'protein': 1.6, 'carbohydrate': 20.1, 'kcal': 86, 'food_name': '红薯', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 20}  # 红薯
+    brown_rice = {'fat': 2.4, 'protein': 9, 'carbohydrate': 73.5, 'kcal': kj2kcal(1523), 'food_name': '糙米', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 糙米
+    mantou = {'fat': 2.8, 'protein': 8.7, 'carbohydrate': 50, 'kcal': kj2kcal(1101), 'food_name': '牛乳小馒头', 'food_id': '', 'dietary_fiber': '', 'sodium': 34, 'price': '', 'desc': '', 'g_step': 30}  # 馒头
 
     # day1 = [(beef_1, 150), (shrimp, 144), (oatmeal, 70), (rice, 300), (oat_milk, 270), (egg, 150),
     #               (banana, 70), (sunflower_seed_oil, 10), (danish_pastry, 80)]
@@ -147,12 +146,15 @@ def select_food():
     # day2 = [(salmon, 200), (shrimp, 144), (danish_pastry, 160), (oat_milk, 150), (rice, 200), (sweet_potato, 150),
     #         (egg, 100), (oatmeal, 60), (banana, 140), (brown_rice, 40)]
 
-    # day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
-    #         (egg, 80), (oatmeal, 60), (banana, 140), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
+    day3 = [(beef_2, 150), (shrimp, 80), (salmon, 100), (danish_pastry, 80), (oat_milk, 250), (rice, 140), (sweet_potato, 235),
+            (egg, 80), (oatmeal, 60), (banana, 0), (brown_rice, 50), (mantou, 90), (mix_nut_2, 26)]
+
+    # day3 = [beef_2, shrimp, salmon, danish_pastry, oat_milk, rice, sweet_potato,
+    #         egg, oatmeal, banana, brown_rice, mantou, mix_nut_2]
 
     day4 = []
-    grid_search(day4, calculate_nutrient_intake(lxf, 0))
-    # food_combination(day3, lxf)
+    # grid_search(day3, calculate_nutrient_intake(lxf, 0))
+    food_combination(day3, lxf)
 
 
 

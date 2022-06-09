@@ -69,12 +69,12 @@ def grid_search(food_lst, plan_intake):
     plan_carbohydrate = plan_intake['carbohydrate']
     plan_kcal = plan_intake['kcal']
 
-    food_grid = []  # 每种食物网格搜索的范围
+    food_grid = []  # 每种食物 网格搜索的范围
     for food in food_lst:
-        _range = [range(0, int(plan_kcal/food['kcal']), food.get('g_step', 20))]
+        _range = [x for x in range(0, int(plan_kcal/food['kcal']*100), food.get('g_step', 20))]
         food_grid.append(_range)
 
-    print(food_grid)
+    print(*[len(x) for x in food_grid], sep='\n')
 
 
 def calculate_best_plan():

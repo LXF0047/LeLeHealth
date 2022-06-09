@@ -6,7 +6,6 @@
 # @desc :
 import pandas as pd
 from config.path import DB_PATH
-from utils import dicts2df
 
 
 def insert_csv(info_df):
