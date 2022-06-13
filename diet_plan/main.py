@@ -144,6 +144,7 @@ def select_food():
     beef_3 = {'fat': 13.5, 'protein': 13.2, 'carbohydrate': 1.9, 'kcal': 184, 'food_name': '肥牛', 'food_id': '', 'dietary_fiber': '', 'sodium': 195, 'price': '', 'desc': '', 'g_step': 100}  # 馒头
     xilanhua = {'fat': 0.6, 'protein': 3.5, 'carbohydrate': 3.7, 'kcal': 27, 'food_name': '西蓝花', 'food_id': '', 'dietary_fiber': '', 'sodium': 0, 'price': '', 'desc': '', 'g_step': 0}  # 西蓝花
     qingjiao = {'fat': 0.3, 'protein': 0.8, 'carbohydrate': 5.2, 'kcal': 22, 'food_name': '青椒', 'food_id': '', 'dietary_fiber': '', 'sodium': 0, 'price': '', 'desc': '', 'g_step': 0}  # 青椒
+    hongshu = {'fat': 0.1, 'protein': 1.6, 'carbohydrate': 20.1, 'kcal': 22, 'food_name': '红薯', 'food_id': '', 'dietary_fiber': '', 'sodium': 55, 'price': '', 'desc': '', 'g_step': 0}  # 红薯
 
     # day1 = [(beef_1, 150), (shrimp, 144), (oatmeal, 70), (rice, 300), (oat_milk, 270), (egg, 150),
     #               (banana, 70), (sunflower_seed_oil, 10), (danish_pastry, 80)]
@@ -159,11 +160,14 @@ def select_food():
     # day3 = [beef_2, shrimp, salmon, danish_pastry, oat_milk, rice, sweet_potato,
     #         egg, oatmeal, banana, brown_rice, mantou, mix_nut_2]
 
-    day7 = [(beef_2, 150), (mantou, 90), (rice, 250), (oatmeal, 60), (banana, 100), (xilanhua, 140), (qingjiao, 130),
+    day7 = [(beef_2, 150), (mantou, 120), (rice, 250), (oatmeal, 60), (banana, 60), (xilanhua, 140), (qingjiao, 130),
             (oat_milk, 350), (salmon, 100), (mix_nut_2, 26), (shrimp, 80)]
 
+    day8 = [(beef_2, 130), (mantou, 90), (rice, 140), (brown_rice, 60), (oatmeal, 70), (banana, 60), (qingjiao, 150),
+            (oat_milk, 400), (salmon, 200), (mix_nut_2, 26), (hongshu, 240), (egg, 80)]
+
     # grid_search(day3, calculate_nutrient_intake(lxf, 0))
-    food_combination(day7, lxf)
+    food_combination(day8, lxf)
 
 
 
