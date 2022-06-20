@@ -127,6 +127,7 @@ def select_food():
     beef_2 = {'fat': 1.8, 'protein': 19.2, 'carbohydrate': 2.9, 'kcal': 105, 'food_name': '牛腿肉', 'food_id': '', 'dietary_fiber': 0, 'sodium': 79.9, 'price': '', 'desc': '', 'g_step': 50}  # 牛腿肉
     shrimp = {'fat': 0.8, 'protein': 18.6, 'carbohydrate': 2.8, 'kcal': 45, 'food_name': '去皮对虾', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 15}  # 虾仁
     oatmeal = {'fat': 15.8, 'protein': 7.4, 'carbohydrate': 63.2, 'kcal': kj2kcal(1857), 'food_name': '水果麦片', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 水果麦片
+    oatmeal_2 = {'fat': 9.3, 'protein': 11, 'carbohydrate': 60.5, 'kcal': kj2kcal(1656), 'food_name': '麦片', 'food_id': '', 'dietary_fiber': 12, 'sodium': 8, 'price': '', 'desc': '', 'g_step': 10}  # 麦片
     rice = {'fat': 0.9, 'protein': 7.9, 'carbohydrate': 77.2, 'kcal': 346, 'food_name': '生米', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 生米
     oat_milk = {'fat': 0.8, 'protein': 1, 'carbohydrate': 8.1, 'kcal': 45, 'food_name': '燕麦牛奶', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 10}  # 燕麦牛奶
     egg = {'fat': 9, 'protein': 12.7, 'carbohydrate': 1.5, 'kcal': 138, 'food_name': '鸡蛋', 'food_id': '', 'dietary_fiber': '', 'sodium': '', 'price': '', 'desc': '', 'g_step': 40}  # 鸡蛋
@@ -145,6 +146,15 @@ def select_food():
     xilanhua = {'fat': 0.6, 'protein': 3.5, 'carbohydrate': 3.7, 'kcal': 27, 'food_name': '西蓝花', 'food_id': '', 'dietary_fiber': '', 'sodium': 0, 'price': '', 'desc': '', 'g_step': 0}  # 西蓝花
     qingjiao = {'fat': 0.3, 'protein': 0.8, 'carbohydrate': 5.2, 'kcal': 22, 'food_name': '青椒', 'food_id': '', 'dietary_fiber': '', 'sodium': 0, 'price': '', 'desc': '', 'g_step': 0}  # 青椒
     hongshu = {'fat': 0.1, 'protein': 1.6, 'carbohydrate': 20.1, 'kcal': 22, 'food_name': '红薯', 'food_id': '', 'dietary_fiber': '', 'sodium': 55, 'price': '', 'desc': '', 'g_step': 0}  # 红薯
+    qiukui = {'fat': 0.2, 'protein': 1.8, 'carbohydrate': 6.2, 'kcal': 25, 'food_name': '秋葵', 'food_id': '', 'dietary_fiber': 1.8, 'sodium': 8.7, 'price': '', 'desc': '', 'g_step': 100}  # 秋葵
+    nfc = {'fat': 0, 'protein': 0.6, 'carbohydrate': 10, 'kcal': kj2kcal(205), 'food_name': 'nfc橙汁', 'food_id': '', 'dietary_fiber': 0, 'sodium': 0, 'price': '', 'desc': '', 'g_step': 300}  # nfc橙汁
+    apple = {'fat': 0.2, 'protein': 0.4, 'carbohydrate': 13.7, 'kcal': 53, 'food_name': '苹果', 'food_id': '', 'dietary_fiber': 1.7, 'sodium': 1.3, 'price': '', 'desc': '', 'g_step': 300}  # 苹果
+    chicken_breast = {'fat': 1.9, 'protein': 24.6, 'carbohydrate': 0.6, 'kcal': 118, 'food_name': '鸡胸肉', 'food_id': '', 'dietary_fiber': 0, 'sodium': 44.8, 'price': '', 'desc': '', 'g_step': 300}
+    niushe = {'fat': 13.3, 'protein': 17, 'carbohydrate': 2, 'kcal': 196, 'food_name': '牛舌', 'food_id': '', 'dietary_fiber': 0, 'sodium': 58.4, 'price': '', 'desc': '', 'g_step': 300}
+    niuyouguo = {'fat': 100, 'protein': 0, 'carbohydrate': 0, 'kcal': 884, 'food_name': '牛油果', 'food_id': '', 'dietary_fiber': 0, 'sodium': 0, 'price': '', 'desc': '', 'g_step': 300}
+    beijibei = {'fat': 1.1, 'protein': 11.1, 'carbohydrate': 3.8, 'kcal': 73, 'food_name': '北极贝', 'food_id': '', 'dietary_fiber': 0, 'sodium': 250, 'price': '', 'desc': '', 'g_step': 300}
+    bread1 = {'fat': 13.5, 'protein': 8.3, 'carbohydrate': 51.8, 'kcal': 73, 'food_name': '叮咚经典原味北海道吐司面包', 'food_id': '', 'dietary_fiber': 0, 'sodium': 247, 'price': '', 'desc': '', 'g_step': 300}
+
 
     # day1 = [(beef_1, 150), (shrimp, 144), (oatmeal, 70), (rice, 300), (oat_milk, 270), (egg, 150),
     #               (banana, 70), (sunflower_seed_oil, 10), (danish_pastry, 80)]
@@ -157,17 +167,23 @@ def select_food():
 
     # day4 = [(beef_3, 200), (cherry, 150), (coffee, 360), (beef_2, 180), (rice, 80), (oatmeal, 60), (banana, 70), (brown_rice, 40), (mantou, 90), (mix_nut_2, 26)]
 
-    # day3 = [beef_2, shrimp, salmon, danish_pastry, oat_milk, rice, sweet_potato,
-    #         egg, oatmeal, banana, brown_rice, mantou, mix_nut_2]
+    # day7 = [(beef_2, 150), (mantou, 120), (rice, 250), (oatmeal, 60), (banana, 60), (xilanhua, 140), (qingjiao, 130),
+    #         (oat_milk, 350), (salmon, 100), (mix_nut_2, 26), (shrimp, 80)]
+    #
+    # day8 = [(beef_2, 130), (mantou, 90), (rice, 140), (brown_rice, 60), (oatmeal, 70), (banana, 60), (qingjiao, 150),
+    #         (oat_milk, 400), (salmon, 200), (mix_nut_2, 26), (hongshu, 240), (egg, 80)]
+    #
+    # day9 = [(beef_2, 130), (mantou, 90), (rice, 140), (brown_rice, 60), (oatmeal, 70), (banana, 60), (qingjiao, 150),
+    #         (oat_milk, 400), (salmon, 200), (mix_nut_2, 26), (hongshu, 240), (egg, 80)]
 
-    day7 = [(beef_2, 150), (mantou, 120), (rice, 250), (oatmeal, 60), (banana, 60), (xilanhua, 140), (qingjiao, 130),
-            (oat_milk, 350), (salmon, 100), (mix_nut_2, 26), (shrimp, 80)]
+    # day10 = [(beef_2, 150), (mantou, 90), (rice, 150), (brown_rice, 60), (oatmeal, 40),
+    #         (oat_milk, 400), (mix_nut_2, 26), (xilanhua, 40), (nfc, 300), (qiukui, 170), (shrimp, 110), (sunflower_seed_oil, 15)]
 
-    day8 = [(beef_2, 130), (mantou, 90), (rice, 140), (brown_rice, 60), (oatmeal, 70), (banana, 60), (qingjiao, 150),
-            (oat_milk, 400), (salmon, 200), (mix_nut_2, 26), (hongshu, 240), (egg, 80)]
+    day13 = [(beef_2, 190), (rice, 230), (oatmeal, 30), (oat_milk, 300), (xilanhua, 230), (sunflower_seed_oil, 15),
+             (chicken_breast, 170), (bread1, 30)]
 
     # grid_search(day3, calculate_nutrient_intake(lxf, 0))
-    food_combination(day8, lxf)
+    food_combination(day13, lxf)
 
 
 
@@ -181,6 +197,6 @@ if __name__ == '__main__':
     eee 每日运动消耗，一小时运动250左右
     neat 除运动外每日活动消耗, 上班族300左右
     """
-    lele = {'sex': 'female', 'weight': 54.5, 'height': 166.5, 'age': 26, 'eee': 0, 'neat': 200}
+    lele = {'sex': 'female', 'weight': 53.5, 'height': 166.5, 'age': 26, 'eee': 0, 'neat': 200}
     lxf = {'sex': 'male', 'weight': 74, 'height': 188, 'age': 28, 'eee': 0, 'neat': 300}
     select_food()
